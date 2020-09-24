@@ -17,23 +17,23 @@
                 <div id="logbox">
                     <form id="signup" method="post" action="#">
                         <h1>Registrarse</h1>
-                        <input name="user[name]" type="text" placeholder="Nombres y apellidos" pattern="[a-zA-Z ]{2,48}" title="El nombre solo puede tener letras minusculas y mayusculas" autofocus="autofocus" required="required" class="input pass"/>
-                        <input type='text' id="fecha" class="input pass" placeholder="Fecha de nacimiento" required="required"/>    
-                        <input name="user[password]" type="text" pattern="[0-9]{13}" placeholder="DPI" title="Escriba los 13 digitos" required="required" class="input pass"/>
-                        <input name="user[password]" type="text" pattern="[0-9]{8,12}" placeholder="Numero telefonico" title="Escriba solo numeros" required="required" class="input pass"/>
-                        <input name="user[password]" type="text" pattern="[0-9]{1,4}" placeholder="Peso en kg" title="Escriba solo numeros" required="required" class="input pass"/>
+                        <input name="nombre" type="text" placeholder="Nombres y apellidos" pattern="[a-zA-Z ]{2,48}" title="El nombre solo puede tener letras minusculas y mayusculas" autofocus="autofocus" required="required" class="input pass"/>
+                        <input name="fechaNacimiento" type='text' id="fecha" class="input pass" placeholder="Fecha de nacimiento" required="required"/>    
+                        <input name="DPI" type="text" pattern="[0-9]{13}" placeholder="DPI" title="Escriba los 13 digitos" required="required" class="input pass"/>
+                        <input name="numero" type="text" pattern="[0-9]{8,12}" placeholder="Numero telefonico" title="Escriba solo numeros" required="required" class="input pass"/>
+                        <input name="peso" type="text" pattern="[0-9]{1,4}" placeholder="Peso en kg" title="Escriba solo numeros" required="required" class="input pass"/>
                         <input name="sangre" type="text" pattern="[A,B,0,O,+,-]{2,3}" placeholder="Tipo de sangre. Ej: A+" title="Solo puede escribir A,B,0,+,-" required="required" class="input class">
-                        <input name="user[email]" type="email" placeholder="Correo electronico" class="input pass" required="required"/>
+                        <input name="correo" type="email" placeholder="Correo electronico" class="input pass" required="required"/>
                         <input name="password" type="password" placeholder="Contraseña" class="input pass" required="required"> 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" style="margin-left: 40px" type="radio" name="sexo" value="masculino" required="required">
                             <label class="form-check-label">Masculino</label>
-                            <input class="form-check-input" style="margin-left: 10px" type="radio" name="sexo" value="masculino" required="required">
+                            <input class="form-check-input" style="margin-left: 10px" type="radio" name="sexo" value="femenino" required="required">
                             <label class="form-check-label">Femenino</label>
                         </div>
                         <input type="submit" value="Registrarme" class="inputButton"/>
                         <div class="text-center">
-                            already have an account? <a href="index.jsp" id="login_id" class="text-light">Login</a>
+                            already have an account? <a href="../index.jsp" id="login_id" class="text-light">Login</a>
                         </div>
                         <script>
                             $(document).ready(function () {
@@ -43,6 +43,7 @@
                     </form>
                 </div>
             </div>
+        </div>
     </body>		
 </html>
 

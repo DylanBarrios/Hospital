@@ -1,8 +1,6 @@
 package com.hospital.mysql;
 
 import com.hospital.login.Login;
-import com.hospital.mysql.Conexion;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,9 +27,8 @@ public class VerificarUsuario {
     }
 
     public boolean VerificarUsuario(String sql) {   
-        Conexion conexion = new Conexion();
-        try (Connection connection = Conexion.getConnection()) {
-            PreparedStatement pst = connection.prepareStatement(sql);
+        try {
+            PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 return true;

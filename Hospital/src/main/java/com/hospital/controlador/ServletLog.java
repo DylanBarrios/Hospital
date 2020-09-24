@@ -1,4 +1,4 @@
-package Controlador;
+package com.hospital.controlador;
 
 import com.hospital.login.Login;
 import com.hospital.mysql.Conexion;

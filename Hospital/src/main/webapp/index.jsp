@@ -18,7 +18,8 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center form_container">
-                        <%@page import="Controlador.ServletLog" %>
+                        <%@page import="com.hospital.controlador.ServletLog, com.hospital.mysql.Conexion" %>
+                        <% Conexion conexion = new Conexion(); %>
                         <form action="ServletLog" method="post">
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
@@ -34,7 +35,7 @@
                             </div>
                             <div>
                                 <select class="custom-select" name="rol">
-                                    <option value="Paciente">Paciente</option>
+                                    <option value="Administrador">Paciente</option>
                                     <option value="Medico">Medico</option>
                                     <option value="Administrador">Administrador</option>
                                 </select>
