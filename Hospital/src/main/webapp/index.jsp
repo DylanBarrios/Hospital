@@ -49,7 +49,7 @@
 
                     <div class="mt-4">
                         <div class="d-flex justify-content-center links">
-                            No tienes una cuenta? <a href="jsp/registro.jsp" class="ml-2 text-light">Registrarse</a>
+                            No tienes una cuenta? <a href="jsp/NuevoPaciente.jsp" class="ml-2 text-light">Registrarse</a>
                         </div>
                     </div>
                 </div>

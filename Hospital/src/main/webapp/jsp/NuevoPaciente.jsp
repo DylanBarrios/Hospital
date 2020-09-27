@@ -8,14 +8,15 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
         <meta charset="UTF-8">
-        <title>Registration Form</title>
+        <title>Regisrar Paciente</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <div class="container justify-content-center">
             <div class="col-md-6">
                 <div id="logbox">
-                    <form id="signup" method="post" action="#">
+                    <%@page import="com.hospital.controlador.ServletNuevoPaciente" %>
+                    <form id="signup" method="post" action="../ServletNuevoPaciente">
                         <h1>Registrarse</h1>
                         <input name="nombre" type="text" placeholder="Nombres y apellidos" pattern="[a-zA-Z ]{2,48}" title="El nombre solo puede tener letras minusculas y mayusculas" autofocus="autofocus" required="required" class="input pass"/>
                         <input name="fechaNacimiento" type='text' id="fecha" class="input pass" placeholder="Fecha de nacimiento" required="required"/>    
@@ -37,7 +38,9 @@
                         </div>
                         <script>
                             $(document).ready(function () {
-                                $('#fecha').datepicker();
+                                $('#fecha').datepicker({
+                                format: 'yyyy/mm/dd'
+                                });
                             });
                         </script>
                     </form>

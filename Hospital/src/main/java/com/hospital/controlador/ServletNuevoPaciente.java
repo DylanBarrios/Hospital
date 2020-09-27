@@ -1,7 +1,7 @@
 package com.hospital.controlador;
 
-import com.hospital.medico.Medico;
-import com.hospital.mysql.NuevoMedicoMysql;
+import com.hospital.medico.Paciente;
+import com.hospital.mysql.NuevoPacienteMysql;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -14,37 +14,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
-@WebServlet(name = "nuevo", urlPatterns = {"/nuevo"})
-public class nuevo extends HttpServlet {
+@WebServlet(name = "ServletNuevoPaciente", urlPatterns = {"/ServletNuevoPaciente"})
+public class ServletNuevoPaciente extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println("<h1>Servlet nuevo at " + request.getContextPath() + "</h1>");
-            String codigo = nuevoCodigo();
-            String nombre = request.getParameter("nombre");
-            String dpi = request.getParameter("dpi");
-            String telefono = request.getParameter("telefono");
-            String colegiado = request.getParameter("colegiado");
-            String correo = request.getParameter("correo");
-            String password = request.getParameter("password");
-            String especialidad = request.getParameter("especialidad");
-            String horaInicio = request.getParameter("horaInicio");
-            String horaSalida = request.getParameter("horaSalida");
-            Date inicioTrabajo = new SimpleDateFormat("YYYY/MM/dd").parse(request.getParameter("inicioTrabajo"));
-            
-            Medico medico = new Medico(nombre, dpi, codigo, password, telefono, colegiado, correo, horaInicio, horaSalida, especialidad, inicioTrabajo);
-            NuevoMedicoMysql medicoMysql = new NuevoMedicoMysql();
-            if(medicoMysql.addMedico(medico)){
-                response.sendRedirect("jsp/NuevoMedico.jsp");
-            }
-            
+            String Codigo = nuevoCodigo();
+            String Nombre = request.getParameter("nombre");
+            Date Nacimiento = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("fechaNacimiento").toString());
+            String DPI = request.getParameter("DPI");
+            String Telefono = request.getParameter("numero");
+            Double Peso = Double.parseDouble(request.getParameter("peso"));
+            String Sangre = request.getParameter("sangre");
+            String Correo = request.getParameter("correo");
+            String Password = request.getParameter("password");
+            String Sexo = request.getParameter("sexo");
 
+            Paciente paciente = new Paciente(Codigo, Nombre, Nacimiento, DPI, Telefono, Peso, Sangre, Correo, Sexo, Password);
+            NuevoPacienteMysql pacienteMysql = new NuevoPacienteMysql();
+            if (pacienteMysql.addPaciente(paciente)) {
+                response.sendRedirect("index.jsp");
+            }
         }
     }
-    
-    
+
     public String nuevoCodigo() {
         String codigo = "";
         int valorDado = 0;
@@ -61,8 +58,6 @@ public class nuevo extends HttpServlet {
 
         return codigo;
     }
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -79,7 +74,7 @@ public class nuevo extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
-            Logger.getLogger(nuevo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletNuevoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -97,7 +92,7 @@ public class nuevo extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
-            Logger.getLogger(nuevo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletNuevoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
