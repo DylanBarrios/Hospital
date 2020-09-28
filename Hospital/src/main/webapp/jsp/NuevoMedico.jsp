@@ -1,4 +1,4 @@
-<%@page import="com.hospital.medico.Especialidad"%>
+<%@page import="com.hospital.objetos.Especialidad"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hospital.mysql.NuevaEspecialidadMysql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

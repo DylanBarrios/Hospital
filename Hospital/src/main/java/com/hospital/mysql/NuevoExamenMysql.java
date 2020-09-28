@@ -4,6 +4,7 @@ import com.hospital.objetos.Examen;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class NuevoExamenMysql {
@@ -46,5 +47,30 @@ public class NuevoExamenMysql {
             System.err.println("Error al verificar codigo al agregar Paciente" + e);
         }
         return false;
+    }
+    
+    public ArrayList<Examen> getExamenes() {
+        String sql = "SELECT * FROM Examen";
+
+        try {
+            ArrayList<Examen> arrayEx = new ArrayList<Examen>();
+            PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String Codigo = rs.getString("codigo");
+                String nombre = rs.getString("nombre");
+                String descripcion = rs.getString("Descripcion");
+                String informe = rs.getString("tipoInforme");
+                boolean orden = rs.getBoolean("ordenMedica");
+                Double costo = rs.getDouble("costo");
+                
+                Examen examen = new Examen(Codigo, nombre, informe, costo, descripcion, orden);
+                arrayEx.add(examen);
+            }
+            return arrayEx;
+        } catch (SQLException e) {
+            System.err.println("Error al verificar codigo al crear nueva especialidad" + e);
+            return null;    
+        }
     }
 }

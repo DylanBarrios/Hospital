@@ -32,7 +32,7 @@
             <div class="card d-inline-block text-center fondoDiv">
                 <img class="card-img-top" style="width: 18rem; height: 14rem" src="imagenes/laboratorista.jpg" alt="Card image cap">
                 <div class="card-body text-center">
-                    <a href="jsp/NuevoExamen.jsp" class="btn btn-info">Nuevo Laboratorista</a>
+                    <a href="jsp/NuevoLaboratorista.jsp" class="btn btn-info">Nuevo Laboratorista</a>
                 </div>
             </div>
         </div>
