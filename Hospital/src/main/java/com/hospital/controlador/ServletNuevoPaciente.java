@@ -1,6 +1,6 @@
 package com.hospital.controlador;
 
-import com.hospital.medico.Paciente;
+import com.hospital.objetos.Paciente;
 import com.hospital.mysql.NuevoPacienteMysql;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +23,7 @@ public class ServletNuevoPaciente extends HttpServlet {
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String Codigo = nuevoCodigo();
+            String Codigo = nuevoCodigo.getCodigo();
             String Nombre = request.getParameter("nombre");
             Date Nacimiento = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("fechaNacimiento").toString());
             String DPI = request.getParameter("DPI");
@@ -42,22 +42,6 @@ public class ServletNuevoPaciente extends HttpServlet {
         }
     }
 
-    public String nuevoCodigo() {
-        String codigo = "";
-        int valorDado = 0;
-        String[] letras = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-        for (int i = 0; i < 4; i++) {
-            valorDado = (int) Math.floor(Math.random() * letras.length);
-            codigo += letras[valorDado];
-        }
-        codigo += "-";
-        for (int i = 0; i < 4; i++) {
-            valorDado = (int) Math.floor(Math.random() * 9);
-            codigo += valorDado;
-        }
-
-        return codigo;
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

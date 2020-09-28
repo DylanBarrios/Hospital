@@ -1,6 +1,6 @@
 package com.hospital.mysql;
 
-import com.hospital.medico.Especialidad;
+import com.hospital.objetos.Especialidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

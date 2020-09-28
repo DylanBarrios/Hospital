@@ -1,7 +1,7 @@
 package com.hospital.mysql;
 
 import org.apache.commons.codec.binary.Base64;
-import com.hospital.medico.Paciente;
+import com.hospital.objetos.Paciente;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -19,8 +19,8 @@
     <body>
         <div class="container justify-content-center">
             <div id="logbox">
-                <%@page import="com.hospital.controlador.nuevo"%>
-                <form id="signup" method="post" action="../nuevo">
+                <%@page import="com.hospital.controlador.ServletNuevoMedico"%>
+                <form id="signup" method="post" action="../ServletNuevoMedico">
                     <h1 >Agregar Medico</h1>
                     <input name="nombre" type="text" placeholder="Nombres y apellidos" pattern="[a-zA-Z ]{2,48}" title="El nombre solo puede tener letras minusculas y mayusculas" autofocus="autofocus" required="required" class="input pass"/>
                     <input name="dpi" type="text" pattern="[0-9]{13}" placeholder="DPI" title="Escriba los 13 digitos" required="required" class="input pass"/>

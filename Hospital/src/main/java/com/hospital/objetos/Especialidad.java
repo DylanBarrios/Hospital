@@ -1,4 +1,4 @@
-package com.hospital.medico;
+package com.hospital.objetos;
 
 public class Especialidad {
     

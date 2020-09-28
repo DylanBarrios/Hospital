@@ -1,7 +1,7 @@
 package com.hospital.controlador;
 
-import com.hospital.objetos.Especialidad;
-import com.hospital.mysql.NuevaEspecialidadMysql;
+import com.hospital.mysql.NuevoExamenMysql;
+import com.hospital.objetos.Examen;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,23 +10,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ServletNuevaEsp", urlPatterns = {"/ServletNuevaEsp"})
-public class ServletNuevaEsp extends HttpServlet {
+@WebServlet(name = "ServletNuevoExamenE", urlPatterns = {"/ServletNuevoExamenE"})
+public class ServletNuevoExamenE extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String cod = nuevoCodigo.getCodigo();
+            out.println("<h1>Servlet ServletNuevoExamenE at " + request.getContextPath() + "</h1>");
+           
+            String codigo = nuevoCodigo.getCodigo();
             String nombre = request.getParameter("nombre");
+            String informe = request.getParameter("informe");
             double costo = Double.parseDouble(request.getParameter("costo"));
-
-            Especialidad esp = new Especialidad(cod, nombre, costo);
-            NuevaEspecialidadMysql espMysql = new NuevaEspecialidadMysql();
-            if(espMysql.addEspecialidad(esp)){
-                out.print("registrado");
-                response.sendRedirect("jsp/NuevoMedico.jsp");
+            String descripcion = request.getParameter("descripcion");
+            boolean orden = false;
+            if(request.getParameter("ordenMedica").equals("si"))
+                orden=true;
+            
+            Examen examen = new Examen(codigo, nombre, informe, costo, descripcion, orden);
+            NuevoExamenMysql examenMysql = new NuevoExamenMysql();
+            
+            if(examenMysql.addExamen(examen)){
+                response.sendRedirect("jsp/NuevoExamen.jsp");
             }
+            
         }
     }
 

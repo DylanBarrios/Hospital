@@ -1,4 +1,4 @@
-package com.hospital.medico;
+package com.hospital.objetos;
 
 import java.util.Date;
 

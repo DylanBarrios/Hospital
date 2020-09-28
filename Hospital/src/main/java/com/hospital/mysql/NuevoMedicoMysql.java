@@ -1,11 +1,14 @@
 package com.hospital.mysql;
 
-import com.hospital.medico.Medico;
+import com.hospital.objetos.Medico;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JOptionPane;
+import org.apache.commons.codec.binary.Base64;
 
 public class NuevoMedicoMysql {
 
@@ -17,10 +20,14 @@ public class NuevoMedicoMysql {
             String sql = "INSERT INTO Medico VALUES(?,?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
+                //Encriptacion de la clave
+                byte[] encodedBytes = Base64.encodeBase64(medico.getPassword().getBytes());
+                Blob password = new SerialBlob(encodedBytes);
+                
                 pst.setString(1, medico.getCodigo());
                 pst.setString(2, medico.getNombre());
                 pst.setString(3, medico.getDPI());
-                pst.setString(4, medico.getPassword());
+                pst.setBlob(4, password);
                 pst.setString(5, medico.getTelefono());
                 pst.setString(6, medico.getColegiado());
                 pst.setString(7, medico.getCorreo());
