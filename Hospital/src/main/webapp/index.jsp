@@ -35,9 +35,10 @@
                             </div>
                             <div>
                                 <select class="custom-select" name="rol">
-                                    <option value="Administrador">Paciente</option>
+                                    <option value="Paciente">Paciente</option>
                                     <option value="Medico">Medico</option>
                                     <option value="Administrador">Administrador</option>
+                                    <option value="Laboratorista">Laboratorista</option>
                                 </select>
                             </div>
 

@@ -15,6 +15,9 @@ public class NuevoPacienteMysql {
         if (verificarCodigo(paciente.getCodigo())) {
             JOptionPane.showMessageDialog(null, "Error, porfavor vuelva a cargar el formulario");
             return false;
+        } else if (verificarDPI(paciente.getDPI())) {
+            JOptionPane.showMessageDialog(null, "El DPI ya existe, ud esta duplicando identidad, llamaremos al FBI");
+            return false;
         } else {
             String sql = "INSERT INTO Paciente VALUES(?,?,?,?,?,?,?,?,?,?)";
             try {
@@ -25,7 +28,7 @@ public class NuevoPacienteMysql {
                 //Obteniendo fecha
                 java.util.Date DateUtil = paciente.getNacimiento();
                 java.sql.Date nacimiento = new java.sql.Date(DateUtil.getTime());
-                
+
                 pst.setString(1, paciente.getCodigo());
                 pst.setString(2, paciente.getNombre());
                 pst.setDate(3, nacimiento);
@@ -41,7 +44,6 @@ public class NuevoPacienteMysql {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error en la base de datos, contacte con el programador");
                 System.err.println("Error al agregar Nuevo Paciente: " + e);
-                System.out.println("Error al agregar Nuevo Paciente: " + e);
                 return false;
             }
         }
@@ -52,6 +54,22 @@ public class NuevoPacienteMysql {
 
         try {
             PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar codigo al agregar Paciente" + e);
+        }
+        return false;
+    }
+
+    public boolean verificarDPI(String DPI) {
+        String sql = "SELECT codigo FROM Paciente WHERE DPI = ?";
+
+        try {
+            PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
+            pst.setString(1, DPI);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 return true;

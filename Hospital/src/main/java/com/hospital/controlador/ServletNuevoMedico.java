@@ -37,8 +37,9 @@ public class ServletNuevoMedico extends HttpServlet {
             Medico medico = new Medico(nombre, dpi, codigo, password, telefono, colegiado, correo, horaInicio, horaSalida, especialidad, inicioTrabajo);
             NuevoMedicoMysql medicoMysql = new NuevoMedicoMysql();
             if(medicoMysql.addMedico(medico)){
+                response.sendRedirect("jsp/PaginaPrincipal.jsp");
+            }else
                 response.sendRedirect("jsp/NuevoMedico.jsp");
-            }
             
 
         }

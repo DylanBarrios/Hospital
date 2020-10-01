@@ -1,7 +1,6 @@
 package com.hospital.controlador;
 
-import com.hospital.login.Login;
-import com.hospital.mysql.Conexion;
+import com.hospital.objetos.Login;
 import com.hospital.mysql.VerificarUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 @WebServlet(name = "ServletLog", urlPatterns = {"/ServletLog"})
 public class ServletLog extends HttpServlet {
@@ -22,10 +22,11 @@ public class ServletLog extends HttpServlet {
             String Rol = request.getParameter("rol");
 
             Login login = new Login(DPI, Password, Rol);
-            
+
             VerificarUsuario verificar = new VerificarUsuario();
-            if(verificar.verificar(login)){
-                request.getRequestDispatcher("/jsp/PaginaPrincipal.jsp").forward(request, response);
+            String ruta = verificar.verificar(login);
+            if (ruta != null) {
+                response.sendRedirect(ruta);
             }
         }
     }

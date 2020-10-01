@@ -36,8 +36,9 @@ public class ServletNuevoLaboratoristas extends HttpServlet {
             Laboratorista lab = new Laboratorista(codigo, nombre, dpi, telefono, registro, correo, password, examen, inicioTrabajo);
             NuevoLaboratoristaMysql labMysql = new NuevoLaboratoristaMysql();
             if (labMysql.addLaboratorista(lab)) {
+                response.sendRedirect("jsp/PaginaPrincipal.jsp");
+            }else
                 response.sendRedirect("jsp/NuevoLaboratorista.jsp");
-            }
 
         }
     }

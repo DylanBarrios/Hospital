@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 @WebServlet(name = "ServletNuevoPaciente", urlPatterns = {"/ServletNuevoPaciente"})
 public class ServletNuevoPaciente extends HttpServlet {
@@ -38,7 +37,8 @@ public class ServletNuevoPaciente extends HttpServlet {
             NuevoPacienteMysql pacienteMysql = new NuevoPacienteMysql();
             if (pacienteMysql.addPaciente(paciente)) {
                 response.sendRedirect("index.jsp");
-            }
+            }else
+                response.sendRedirect("jsp/NuevoPaciente.jsp");
         }
     }
 

@@ -15,7 +15,10 @@ public class NuevoLaboratoristaMysql {
         if (verificarCodigo(lab.getCodigo())) {
             JOptionPane.showMessageDialog(null, "Error, porfavor vuelva a cargar el formulario");
             return false;
-        } else {
+        }else if(verificarDPI(lab.getDpi())){
+            JOptionPane.showMessageDialog(null, "Error, ese DPI esta registrado ya");
+            return false;
+        }else {
             String sql = "INSERT INTO Laboratorista VALUES(?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
@@ -46,10 +49,11 @@ public class NuevoLaboratoristaMysql {
     }
 
     public boolean verificarCodigo(String Codigo) {
-        String sql = "SELECT codigo FROM Laboratorista WHERE codigo = '" + Codigo + "'";
+        String sql = "SELECT codigo FROM Laboratorista WHERE codigo = ?";
 
         try {
             PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
+            pst.setString(1, Codigo);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 return true;
@@ -60,4 +64,19 @@ public class NuevoLaboratoristaMysql {
         return false;
     }
 
+    public boolean verificarDPI(String DPI) {
+        String sql = "SELECT codigo FROM Laboratorista WHERE DPI = ?";
+
+        try {
+            PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
+            pst.setString(1, DPI);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar codigo al agregar medico por dpi" + e);
+        }
+        return false;
+    }
 }

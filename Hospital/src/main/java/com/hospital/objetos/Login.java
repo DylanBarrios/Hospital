@@ -1,16 +1,17 @@
-package com.hospital.login;
+package com.hospital.objetos;
 
 public class Login {
 
-    private String DPI, Password, Rol;
+    private String Rol, Password;
+    private static String DPI;
 
     public Login(String DPI, String Password, String Rol) {
-        this.DPI = DPI;
+        Login.DPI = DPI;
         this.Password = Password;
         this.Rol = Rol;
     }
 
-    public String getDPI() {
+    public static String getDPI() {
         return DPI;
     }
 
@@ -21,6 +22,6 @@ public class Login {
     public String getRol() {
         return Rol;
     }
-    
+
     
 }
