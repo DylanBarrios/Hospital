@@ -42,15 +42,15 @@
                                 </select>
                             </div>
 
-                            <div class="d-flex justify-content-center mt-3 login_container">
-                                <button type="submit" name="ingresar" class="btn login_btn">Ingresar!</button>
+                            <div class="d-flex justifalguny-content-center mt-3 login_container">
+                                <button type="submit" name="ingresar" class="btn login_btn">Ingresar</button>
                             </div>
                         </form>
                     </div>
 
                     <div class="mt-4">
                         <div class="d-flex justify-content-center links">
-                            No tienes una cuenta? <a href="jsp/NuevoPaciente.jsp" class="ml-2 text-light">Registrarse</a>
+                            No tienes una cuenta? <a href="jsp/NuevoPaciente.jsp" class="ml-2 text-light">Registrarme</a>
                         </div>
                     </div>
                 </div>

@@ -27,7 +27,7 @@
                     <input name="telefono" type="text" pattern="[0-9]{8,12}" placeholder="Numero telefonico" title="Escriba solo numeros" required="required" class="input pass"/>
                     <input name="colegiado" type="text" pattern="[0-9 -]{2,20}" placeholder="Colegiado" required="required" class="input pass"/>
                     <input name="correo" type="email" placeholder="Correo electronico" class="input pass" required="required"/>
-                    <input name="inicioTrabajo" type='text' id="fecha" class="input pass" placeholder="Fecha en la que inicia" required="required"/>    
+                    <input name="inicioTrabajo" type='text' id="fecha" class="input pass" placeholder="Fecha en la que inicia año/mes/dia" required="required" title="año/mes/dia"/>    
                     <input name="password" type="password" placeholder="Contraseña" class="input pass" required="required"> 
 
                     <div  style="width: 240px; margin-left: 40px">

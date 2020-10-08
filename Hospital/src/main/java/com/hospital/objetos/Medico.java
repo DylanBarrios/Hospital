@@ -28,17 +28,17 @@ public class Medico {
         this.especialidad = especialidad;
         this.InicioTrabajo = InicioTrabajo;
     }
+    
     /*
     Constructor para extraer unicamente los datos que le mostraran al paciente 
     */
-    public Medico(String codigo, String nombre, String colegiado, String correo, String horaEntrada, String horaSalida, String especialidad){
+    public Medico(String codigo, String nombre, String colegiado, String correo, String horaEntrada, String horaSalida){
         this.Codigo = codigo;
         this.Nombre = nombre;
         this.Colegiado = colegiado;
         this.Correo = correo;
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
-        this.especialidad = especialidad;
     }
 
     public String getNombre() {

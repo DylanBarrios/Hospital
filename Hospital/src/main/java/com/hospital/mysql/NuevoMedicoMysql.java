@@ -1,5 +1,6 @@
 package com.hospital.mysql;
 
+import com.hospital.controlador.nuevoCodigo;
 import com.hospital.objetos.Medico;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
@@ -12,7 +13,10 @@ import org.apache.commons.codec.binary.Base64;
 
 public class NuevoMedicoMysql {
 
+    private Medico medico = null;
+    
     public boolean addMedico(Medico medico) {
+        this.medico = medico;
         if (verificarCodigo(medico.getCodigo())) {
             JOptionPane.showMessageDialog(null, "Error, porfavor vuelva a cargar el formulario");
             return false;
@@ -23,35 +27,52 @@ public class NuevoMedicoMysql {
             JOptionPane.showMessageDialog(null, "Error, ese colegiado esta registrado ya");
             return false;
         } else {
-            String sql = "INSERT INTO Medico VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Medico VALUES(?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
                 //Encriptacion de la clave
                 byte[] encodedBytes = Base64.encodeBase64(medico.getPassword().getBytes());
                 Blob password = new SerialBlob(encodedBytes);
 
-                pst.setString(1, medico.getCodigo());
-                pst.setString(2, medico.getNombre());
-                pst.setString(3, medico.getDPI());
-                pst.setBlob(4, password);
-                pst.setString(5, medico.getTelefono()); 
-                pst.setString(6, medico.getColegiado());
-                pst.setString(7, medico.getCorreo());
-                pst.setString(8, medico.getHoraEntrada());
-                pst.setString(9, medico.getHoraSalida());
-
                 java.util.Date DateUtil = medico.getInicioTrabajo();
                 java.sql.Date inicioTrabajo = new java.sql.Date(DateUtil.getTime());
 
-                pst.setDate(10, inicioTrabajo);
-                pst.setString(11, medico.getEspecialidad());
+                pst.setString(1, medico.getCodigo());
+                pst.setString(2, medico.getNombre());
+                pst.setString(3, medico.getColegiado());
+                pst.setString(4, medico.getDPI());
+                pst.setString(5, medico.getTelefono()); 
+                pst.setString(6, medico.getCorreo());
+                pst.setString(7, medico.getHoraEntrada());
+                pst.setString(8, medico.getHoraSalida());
+                pst.setDate(9, inicioTrabajo);
+                pst.setBlob(10, password);
                 pst.executeUpdate();
-                return true;
+                if(addEspecialidad())
+                    return true;
+                else
+                    return false;
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error en la base de datos, contacte con el programador");
                 System.err.println("Error al agregar Nuevo Medico: " + e);
                 return false;
             }
+        }
+    }
+    
+    public boolean addEspecialidad() {
+        String sql = "INSERT INTO EspecialidadMedico VALUES(?,?,?)";
+            
+        try {
+            PreparedStatement pst = Conexion.getConnection().prepareStatement(sql);
+            pst.setString(1, nuevoCodigo.getCodigo());
+            pst.setString(2, medico.getEspecialidad());
+            pst.setString(3, medico.getCodigo());
+            pst.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error alagregar especialidad al doctor" + e);
+            return false;
         }
     }
 
@@ -132,9 +153,8 @@ public class NuevoMedicoMysql {
                 String correo = rs.getString("correo");
                 String horaEntrada = rs.getString("horaEntrada");
                 String horaSalida = rs.getString("horaSalida");
-                String especialidad = rs.getString("especialidad");
 
-                Medico medico = new Medico(codigo, nombre, colegiado, correo, horaEntrada, horaSalida, especialidad);
+                Medico medico = new Medico(codigo, nombre, colegiado, correo, horaEntrada, horaSalida);
                 arrayMedicos.add(medico);
             }
             return arrayMedicos;

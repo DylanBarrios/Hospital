@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.hospital.mysql.VerificarHorariosMedico"%>
 <%@page import="com.hospital.objetos.Medico"%>
 <%@page import="com.hospital.mysql.NuevoMedicoMysql"%>
@@ -35,13 +36,14 @@
             <div id="logbox">
                 <%@page import="com.hospital.controlador.ServletNuevaConsulta"%>
                 <form id="signup" method="post" action="../ServletNuevaConsulta">
-                    <h1 >Agregar Medico</h1>
+                    <h1 >Agendar Cita</h1>
                     <p style="margin-left: 40px" class="d-inline">Fecha para la cita:</p> 
                     <div class='input-group date' id='datetimepicker1' style="width: 245px; margin-left: 37px">
                         <input type='text' class="form-control" name="fecha"/>
                         <span class="input-group-addon"></span>
                     </div>
-                    <a class="btn btn-warning font-weight-bold collapsed" style="margin-left: 40px" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Agregar Medico</a>
+                    <br>
+                    <a class="btn btn-warning font-weight-bold collapsed" style="margin-left: 40px" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Mostrar Medicos</a>
                     <div  style="margin: 20px" class="collapse multi-collapse" id="multiCollapseExample1">
                         <input type="text" name="busquedaNombre" placeholder="Busqueda Por Nombre" id="nombre" class="form-control"/>
                         <table cellspacing="4" cellpadding="5" border="1" id="tabla" class="table table-bordered input_pass">
@@ -61,10 +63,9 @@
                                     NuevoMedicoMysql medicoMysql = new NuevoMedicoMysql();
                                     Medico medico;
                                     String NombreEsp;
-
-                                    for (int i = 0; i < medicoMysql.getMedicos().size(); i++) {
-                                        medico = medicoMysql.getMedicos().get(i);
-                                        NombreEsp = medicoMysql.getEspecialidad(medico.getEspecialidad());
+                                     ArrayList<Medico> arrayMedicos = medicoMysql.getMedicos();
+                                    for (int i = 0; i < arrayMedicos.size(); i++) {
+                                        medico = arrayMedicos.get(i);
                                 %>
                                 <tr class="bg-warning">
                                     <td align="center"><%=medico.getNombre()%>,<p><%=medico.getCodigo()%></p></td>
@@ -72,15 +73,28 @@
                                     <td align="center"><%=medico.getCorreo()%></td>
                                     <td align="center"><%=medico.getHoraEntrada()%></td>
                                     <td align="center"><%=medico.getHoraSalida()%></td>
-                                    <td align="center"><%=NombreEsp%>,<p><%=medico.getEspecialidad()%></p></td>
-                                    <td class="text-center"><button type="button" class="btn btn-info">SELEC</button></td>
+                                    <td class="text-center">
+                                        <a class="btn btn-info collapsed" style="margin-left: 40px" data-toggle="collapse" href="#<%=medico.getCodigo()%>" role="button" aria-expanded="false" aria-controls="horas">Seleccionar Medico</a>                                    
+                                        <div  style="margin: 20px" class="collapse multi-collapse" id="<%=medico.getCodigo()%>">
+                                            <table cellspacing="4" cellpadding="5" border="1" id="tabla" class="table table-bordered input_pass">
+                                                <thead>
+                                                    <tr class="bg-secondary text-white">
+                                                        <td align="center">Horario Ocupado:</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <% }%>
                             <tbody>    
                         </table>
                     </div>
-                    <p style="margin-left: 40px" class="d-inline">Hora de la cita:</p> 
-                    <input type="time" name="hora" class="input pass">
+                    <br><br>
+                    <p style="margin-left: 40px" class="d-inline">Hora para la cita:</p> 
+                    <input name="hora" type="text" pattern="[0-9]{1,2}" placeholder="Escriba solo la hora EJ: 5, 7, 9" title="Escriba solo numeros" required="required" class="input pass"/>
                     <input id="registrar" type="submit" value="Registrar" class="inputButton"/>
                     <input name="CodMedico" type="text" id="CodMedico" class="invisible"></input>
                     <input name="CodEsp" type="text" id="CodEsp" class="invisible"></input>
@@ -128,7 +142,7 @@
                 //Muestra las fils de la tabla si no hay busqueda
                 function mostrar() {
                     $('#tabla tr').each(function () {
-                        $(this).removeClass('oculta')
+                        $(this).removeClass('oculta');
                     });
                 }
 

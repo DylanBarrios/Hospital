@@ -19,7 +19,7 @@
                 <div id="logbox">
                     <%@page import="com.hospital.controlador.ServletNuevoExamenE" %>
                     <form id="signup" method="post" action="../ServletNuevoExamenE">
-                        <h1>Registrarse</h1>
+                        <h1>Nuevo Examen</h1>
                         <input name="nombre" type="text" placeholder="Nombre del examen" pattern="[a-zA-Z, 0-9 ]{2,48}" title="Solo escriba letras y numeros" autofocus="autofocus" required="required" class="input pass"/>
                         <input name="costo" type='text' placeholder="Costo" class="input pass" pattern="[0-9.]{1,48}" title="Solo escriba numeros"  required="required"/>    
                         <textarea name="descripcion" class="input pass" placeholder="Descripcion del nuevo examen"></textarea>

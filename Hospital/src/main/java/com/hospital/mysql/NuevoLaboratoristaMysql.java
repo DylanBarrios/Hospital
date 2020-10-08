@@ -30,14 +30,14 @@ public class NuevoLaboratoristaMysql {
                 java.sql.Date inicioTrabajo = new java.sql.Date(DateUtil.getTime());
                 
                 pst.setString(1, lab.getCodigo());
-                pst.setString(2, lab.getNombre());
-                pst.setString(3, lab.getDpi());
-                pst.setBlob(4, pass);
-                pst.setString(5, lab.getTelefono());
-                pst.setString(6, lab.getRegistro());
+                pst.setString(2, lab.getExamen());
+                pst.setString(3, lab.getNombre());
+                pst.setString(4, lab.getRegistro());
+                pst.setString(5, lab.getDpi());
+                pst.setString(6, lab.getTelefono());
                 pst.setString(7, lab.getCorreo());
                 pst.setDate(8, inicioTrabajo);
-                pst.setString(9, lab.getExamen());
+                pst.setBlob(9, pass);
                 pst.executeUpdate();
                 return true;
             } catch (SQLException e) {

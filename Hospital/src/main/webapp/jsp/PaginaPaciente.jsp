@@ -21,19 +21,19 @@
                 </div>
             </div>
             <div class="card d-inline-block text-center fondoDiv">
-                <img class="card-img-top" style="width: 18rem; height: 14rem" src="/Hospital/imagenes/consulta.jpg" alt="Card image cap">
+                <img class="card-img-top" style="width: 18rem; height: 14rem" src="/Hospital/imagenes/examen.jpg" alt="Card image cap">
                 <div class="card-body">
                     <a href="#" class="btn btn-info">Nuevo Examen De Laboratorio</a>
                 </div>
             </div>
             <div class="card d-inline-block text-center fondoDiv">
-                <img class="card-img-top" style="width: 18rem; height: 14rem" src="/Hospital/imagenes/consulta.jpg" alt="Card image cap">
+                <img class="card-img-top" style="width: 18rem; height: 14rem" src="/Hospital/imagenes/citasPendientes.jpeg" alt="Card image cap">
                 <div class="card-body">
                     <a href="#" class="btn btn-info">Citas Programadas</a>
                 </div>
             </div>
             <div class="card d-inline-block text-center fondoDiv">
-                <img class="card-img-top" style="width: 18rem; height: 14rem" src="/Hospital/imagenes/consulta.jpg" alt="Card image cap">
+                <img class="card-img-top" style="width: 18rem; height: 14rem" src="/Hospital/imagenes/historialMedico.jpg" alt="Card image cap">
                 <div class="card-body">
                     <a href="#" class="btn btn-info">Historial Medico</a>
                 </div>

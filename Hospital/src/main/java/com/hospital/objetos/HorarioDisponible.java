@@ -1,23 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.hospital.objetos;
 
-import java.util.Date;
-
+/**
+ *
+ * @author dylan
+ */
 public class HorarioDisponible {
-    private Date fecha;
-    private String hora;
-
-    public HorarioDisponible(Date fecha, String hora) {
-        this.fecha = fecha;
-        this.hora = hora;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-    
     
 }

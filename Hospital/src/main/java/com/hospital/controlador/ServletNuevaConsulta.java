@@ -27,11 +27,10 @@ public class ServletNuevaConsulta extends HttpServlet {
             String Codigo = nuevoCodigo.getCodigo();
             String Paciente = VerificarUsuario.getCodigoUsuario();
             String Medico = request.getParameter("CodMedico");
-            String Especialidad = request.getParameter("CodEsp");
             String Hora = request.getParameter("hora");
             Date fecha = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("fecha"));
             
-            ConsultaMedica consulta = new ConsultaMedica(Codigo, Paciente, Medico, Especialidad, Hora, fecha);
+            ConsultaMedica consulta = new ConsultaMedica(Codigo, Paciente, Medico, "IALF-7623", Hora, fecha);
             NuevaConsultaMysql consultaMysql = new NuevaConsultaMysql();
             if(consultaMysql.addConsulta(consulta)){
                 response.sendRedirect("jsp/PaginaPaciente.jsp");

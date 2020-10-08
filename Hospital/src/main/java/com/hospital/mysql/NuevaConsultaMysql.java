@@ -13,7 +13,7 @@ public class NuevaConsultaMysql {
 
     public boolean addConsulta(ConsultaMedica consulta) throws ParseException {
         VerificarHorariosMedico vhm = new VerificarHorariosMedico();
-        Date hora = new SimpleDateFormat("hh:mm").parse(consulta.getHora());
+        Date hora = new SimpleDateFormat("hh").parse(consulta.getHora());
         
         if (verificarCodigo(consulta.getCodigo())) {
             JOptionPane.showMessageDialog(null, "Error, porfavor vuelva a cargar el formulario");
@@ -30,7 +30,7 @@ public class NuevaConsultaMysql {
                 pst.setString(1, consulta.getCodigo());
                 pst.setString(2, consulta.getPaciente());
                 pst.setString(3, consulta.getMedico());
-                pst.setString(4, consulta.getEspecialidad());
+                pst.setString(4, "IALF-7623");
                 pst.setDate(5, fechaCita);
                 pst.setString(6, consulta.getHora());
                 pst.executeUpdate();

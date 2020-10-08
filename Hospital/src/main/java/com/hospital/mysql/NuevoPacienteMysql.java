@@ -31,13 +31,13 @@ public class NuevoPacienteMysql {
 
                 pst.setString(1, paciente.getCodigo());
                 pst.setString(2, paciente.getNombre());
-                pst.setDate(3, nacimiento);
-                pst.setString(4, paciente.getDPI());
-                pst.setString(5, paciente.getTelefono());
-                pst.setDouble(6, paciente.getPeso());
-                pst.setString(7, paciente.getSangre());
-                pst.setString(8, paciente.getCorreo());
-                pst.setString(9, paciente.getSexo());
+                pst.setString(3, paciente.getSexo());
+                pst.setDate(4, nacimiento);
+                pst.setString(5, paciente.getDPI());
+                pst.setString(6, paciente.getTelefono());
+                pst.setDouble(7, paciente.getPeso());
+                pst.setString(8, paciente.getSangre());
+                pst.setString(9, paciente.getCorreo());
                 pst.setBlob(10, blob);
                 pst.executeUpdate();
                 return true;
